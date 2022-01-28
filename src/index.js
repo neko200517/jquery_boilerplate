@@ -1,3 +1,6 @@
 import { hello } from './sub';
 
-hello('hello!');
+const message = 'Hello World!!';
+
+// sub.jsに定義されたJavaScriptを実行する。
+hello(message);
