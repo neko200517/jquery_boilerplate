@@ -9,91 +9,21 @@
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.scss */ "./src/js/style.scss");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
+/* harmony import */ var _bootstrap_custom_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./bootstrap-custom.scss */ "./src/js/bootstrap-custom.scss");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/js/style.scss");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_3__);
 // import '@babel/polyfill';
 
 
+
+
 var name = 'Another';
-var title = jquery__WEBPACK_IMPORTED_MODULE_1___default()('title');
-var h1 = jquery__WEBPACK_IMPORTED_MODULE_1___default()('h1');
+var title = jquery__WEBPACK_IMPORTED_MODULE_3___default()('title');
+var h1 = jquery__WEBPACK_IMPORTED_MODULE_3___default()('h1');
 title.text(name);
 h1.text(name);
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/js/style.scss":
-/*!**************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/js/style.scss ***!
-  \**************************************************************************************************************************************************************************************************************************************/
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
-// Imports
-
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "@charset \"UTF-8\";\nhtml,\nbody {\n  height: 100%;\n}\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, \"游ゴシック Medium\", \"Yu Gothic Medium\", \"游ゴシック体\", YuGothic, \"ヒラギノ角ゴ Pro W3\", \"Hiragino Kaku Gothic ProN\", \"メイリオ\", Meiryo, sans-serif;\n  font-feature-settings: \"palt\";\n  /* プロポーショナルメトリクスを有効に */\n}\n\n.my-grid {\n  display: -ms-grid;\n  display: grid;\n  -ms-grid-columns: 200px 1fr;\n  grid-template-columns: 200px 1fr;\n  -ms-grid-rows: 50px 1fr 50px;\n  grid-template-rows: 50px 1fr 50px;\n  width: 100%;\n  height: 100%;\n}\n.my-grid-item {\n  /* 中央寄せ */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  /* フォント */\n  color: white;\n  font-size: 2rem;\n  font-weight: bold;\n  letter-spacing: 0.1em;\n}\n\nheader {\n  -ms-grid-column: 1;\n  -ms-grid-column-span: 2;\n  grid-column: 1/3;\n  -ms-grid-row: 1;\n  grid-row: 1;\n  background: #3498db;\n}\n\naside {\n  -ms-grid-column: 1;\n  grid-column: 1;\n  -ms-grid-row: 2;\n  -ms-grid-row-span: 2;\n  grid-row: 2/4;\n  background: #e67e22;\n}\n\nmain {\n  -ms-grid-column: 2;\n  grid-column: 2;\n  -ms-grid-row: 2;\n  grid-row: 2;\n  background: url(\"thumb.jpg\");\n}\n\nfooter {\n  -ms-grid-column: 2;\n  grid-column: 2;\n  -ms-grid-row: 3;\n  grid-row: 3;\n  background: #95a5a6;\n}", "",{"version":3,"sources":["webpack://./src/js/style.scss","webpack://./src/js/_base.scss","webpack://./src/js/_grid.scss"],"names":[],"mappings":"AAAA,gBAAgB;ACIhB;;EAEE,YAAA;ADFF;;ACKA;EACE,SAAA;EACA,UAAA;EACA,4JAAA;EAGA,6BAAA;EAA+B,sBAAA;ADHjC;;AERA;EACE,iBAAA;EAAA,aAAA;EACA,2BAAA;EAAA,gCAAA;EACA,4BAAA;EAAA,iCAAA;EAEA,WAAA;EACA,YAAA;AFUF;AERE;EACE,SAAA;EACA,aAAA;EACA,uBAAA;EACA,mBAAA;EACA,SAAA;EACA,YAAA;EACA,eAAA;EACA,iBAAA;EACA,qBAAA;AFUJ;;AENA;EACE,kBAAA;EAAA,uBAAA;EAAA,gBAAA;EACA,eAAA;EAAA,WAAA;EAEA,mBAAA;AFQF;;AELA;EACE,kBAAA;EAAA,cAAA;EACA,eAAA;EAAA,oBAAA;EAAA,aAAA;EAEA,mBAAA;AFOF;;AEJA;EACE,kBAAA;EAAA,cAAA;EACA,eAAA;EAAA,WAAA;EAEA,4BAAA;AFMF;;AEHA;EACE,kBAAA;EAAA,cAAA;EACA,eAAA;EAAA,WAAA;EAEA,mBAAA;AFKF","sourcesContent":["@charset \"UTF-8\";\nhtml,\nbody {\n  height: 100%;\n}\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, \"游ゴシック Medium\", \"Yu Gothic Medium\", \"游ゴシック体\", YuGothic, \"ヒラギノ角ゴ Pro W3\", \"Hiragino Kaku Gothic ProN\", \"メイリオ\", Meiryo, sans-serif;\n  font-feature-settings: \"palt\";\n  /* プロポーショナルメトリクスを有効に */\n}\n\n.my-grid {\n  display: grid;\n  grid-template-columns: 200px 1fr;\n  grid-template-rows: 50px 1fr 50px;\n  width: 100%;\n  height: 100%;\n}\n.my-grid-item {\n  /* 中央寄せ */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  /* フォント */\n  color: white;\n  font-size: 2rem;\n  font-weight: bold;\n  letter-spacing: 0.1em;\n}\n\nheader {\n  grid-column: 1/3;\n  grid-row: 1;\n  background: #3498db;\n}\n\naside {\n  grid-column: 1;\n  grid-row: 2/4;\n  background: #e67e22;\n}\n\nmain {\n  grid-column: 2;\n  grid-row: 2;\n  background: url(\"thumb.jpg\");\n}\n\nfooter {\n  grid-column: 2;\n  grid-row: 3;\n  background: #95a5a6;\n}","// ====================================\r\n// フォントなど全体的なスタイルシート\r\n// ====================================\r\n\r\nhtml,\r\nbody {\r\n  height: 100%;\r\n}\r\n\r\nbody {\r\n  margin: 0;\r\n  padding: 0;\r\n  font-family: -apple-system, '游ゴシック Medium', 'Yu Gothic Medium',\r\n    '游ゴシック体', YuGothic, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic ProN',\r\n    'メイリオ', Meiryo, sans-serif;\r\n  font-feature-settings: 'palt'; /* プロポーショナルメトリクスを有効に */\r\n}\r\n","// ====================================\r\n// CSS Grid Layout関係のスタイルシート\r\n// ====================================\r\n\r\n.my-grid {\r\n  display: grid;\r\n  grid-template-columns: 200px 1fr;\r\n  grid-template-rows: 50px 1fr 50px;\r\n\r\n  width: 100%;\r\n  height: 100%;\r\n\r\n  &-item {\r\n    /* 中央寄せ */\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    /* フォント */\r\n    color: white;\r\n    font-size: 2rem;\r\n    font-weight: bold;\r\n    letter-spacing: 0.1em;\r\n  }\r\n}\r\n\r\nheader {\r\n  grid-column: 1 / 3;\r\n  grid-row: 1;\r\n\r\n  background: #3498db;\r\n}\r\n\r\naside {\r\n  grid-column: 1;\r\n  grid-row: 2 / 4;\r\n\r\n  background: #e67e22;\r\n}\r\n\r\nmain {\r\n  grid-column: 2;\r\n  grid-row: 2;\r\n\r\n  background: url('thumb.jpg');\r\n}\r\n\r\nfooter {\r\n  grid-column: 2;\r\n  grid-row: 3;\r\n\r\n  background: #95a5a6;\r\n}\r\n"],"sourceRoot":""}]);
-// Exports
-/* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ "./src/js/style.scss":
-/*!***************************!*\
-  !*** ./src/js/style.scss ***!
-  \***************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_2_use_3_style_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./style.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/js/style.scss");
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-
-var options = {};
-
-options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
-options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
-
-      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
-    
-options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
-options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_2_use_3_style_scss__WEBPACK_IMPORTED_MODULE_6__["default"], options);
-
-
-
-
-       /* harmony default export */ __webpack_exports__["default"] = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_2_use_3_style_scss__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_2_use_3_style_scss__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_2_use_3_style_scss__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
-
 
 /***/ })
 

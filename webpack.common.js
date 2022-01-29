@@ -46,7 +46,7 @@ module.exports = (params) => ({
       },
       // jsファイルの読み込みとコンパイル
       {
-        test: /\.js$/,
+        test: /\.js$/i,
         use: [
           {
             // Babel を利用する
@@ -63,7 +63,7 @@ module.exports = (params) => ({
       },
       // Sassファイルの読み込みとコンパイル
       {
-        test: /\.scss/, // 対象となるファイルの拡張子
+        test: /\.s?css$/i, // 対象となるファイルの拡張子
         use: [
           // linkタグに出力する機能
           params.styleLoader,

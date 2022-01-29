@@ -17,7 +17,7 @@ module.exports = merge(common(params), {
 
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'style.css',
+      filename: `css/${outputFile}.css`,
     }),
     new Obfuscator({ rotateUnicodeArray: true }, []),
   ],

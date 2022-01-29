@@ -1,0 +1,14 @@
+// 例えば角丸設定を上書きする
+$enable-rounded: false;
+
+// テーマカラー設定
+$primary: #c51162;
+
+// ヒーロースペースの背景色
+$jumbotron-bg: #d9f5ff;
+
+// フォントを変える
+$font-family-base: serif;
+
+/* Bootstrap を読み込む */
+@import '~bootstrap/scss/bootstrap.scss';
