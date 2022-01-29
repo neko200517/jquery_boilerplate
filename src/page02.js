@@ -6,7 +6,7 @@ export const init = () => {
   const app = $('#app');
   app.html(`
     <p>
-      page02
+      Hello, Page02
     </p>
   `);
 };

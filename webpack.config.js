@@ -30,14 +30,34 @@ module.exports = {
 
   module: {
     rules: [
+      // jsファイルの読み込みとコンパイル
+      {
+        test: /\.js$/,
+        use: [
+          {
+            // Babel を利用する
+            loader: 'babel-loader',
+            // Babel のオプションを指定する
+            options: {
+              presets: [
+                // プリセットを指定することで、ES2021 を ES5 に変換
+                '@babel/preset-env',
+              ],
+            },
+          },
+        ],
+      },
       // Sassファイルの読み込みとコンパイル
       {
         test: /\.scss/, // 対象となるファイルの拡張子
         use: [
-          // CSSファイルを書き出すオプションを有効にする
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
+          // // CSSファイルを書き出すオプションを有効にする
+          // {
+          //   loader: MiniCssExtractPlugin.loader,
+          // },
+
+          // linkタグに出力する機能
+          'style-loader',
           // CSSをバンドルするための機能
           {
             loader: 'css-loader',
@@ -81,13 +101,13 @@ module.exports = {
     ],
   },
 
-  plugins: [
-    // CSSファイルを外だしにするプラグイン
-    new MiniCssExtractPlugin({
-      // ファイル名を設定します
-      filename: 'style.css',
-    }),
-  ],
+  // plugins: [
+  //   // CSSファイルを外だしにするプラグイン
+  //   new MiniCssExtractPlugin({
+  //     // ファイル名を設定します
+  //     filename: 'style.css',
+  //   }),
+  // ],
 
   // ES5(IE11等)向けの指定（webpack 5以上で必要）
   target: ['web', 'es5'],
