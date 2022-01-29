@@ -1,25 +1,34 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackWatchedGlobEntries = require('webpack-watched-glob-entries-plugin');
 
-// [定数] webpack の出力オプションを指定します
-// 'production' か 'development' を指定
-const MODE = 'development';
+const entries = WebpackWatchedGlobEntries.getEntries(
+  [path.resolve(__dirname, './src/js/**/*.js')],
+  {
+    ignore: path.resolve(__dirname, './src/js/**/_*.js'),
+  }
+)();
 
-// ソースマップの利用有無(productionのときはソースマップを利用しない)
-const enabledSourceMap = MODE === 'development';
-const devtoolMode = MODE === 'development' ? 'source-map' : false;
+// 追加
+const htmlGlobPlugins = (entries, srcPath) => {
+  return Object.keys(entries).map(
+    (key) =>
+      new HtmlWebpackPlugin({
+        inject: 'body',
+        filename: `${key}.html`,
+        template: `${srcPath}/${key}.html`,
+        chunks: [key],
+      })
+  );
+};
 
-module.exports = {
-  // モード値を production に設定すると最適化された状態で、
-  // development に設定するとソースマップ有効でJSファイルが出力される
-  mode: MODE,
-  devtool: devtoolMode,
+module.exports = (params) => ({
+  entry: entries,
 
-  entry: {
-    page01: './src/page01.js',
-    page02: './src/page02.js',
-  },
   output: {
-    path: `${__dirname}/dist/js`,
+    path: path.resolve(__dirname, './dist'),
+    filename: `./js/${params.outputFile}.js`,
   },
   optimization: {
     splitChunks: {
@@ -30,6 +39,11 @@ module.exports = {
 
   module: {
     rules: [
+      // html
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+      },
       // jsファイルの読み込みとコンパイル
       {
         test: /\.js$/,
@@ -51,13 +65,8 @@ module.exports = {
       {
         test: /\.scss/, // 対象となるファイルの拡張子
         use: [
-          // // CSSファイルを書き出すオプションを有効にする
-          // {
-          //   loader: MiniCssExtractPlugin.loader,
-          // },
-
           // linkタグに出力する機能
-          'style-loader',
+          params.styleLoader,
           // CSSをバンドルするための機能
           {
             loader: 'css-loader',
@@ -65,7 +74,7 @@ module.exports = {
               // オプションでCSS内のurl()メソッドの取り込みを禁止する
               url: false,
               // ソースマップの利用有無
-              sourceMap: enabledSourceMap,
+              sourceMap: params.enabledSourceMap,
 
               // 0 => no loaders (default);
               // 1 => postcss-loader;
@@ -78,7 +87,7 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               // PostCSS側でもソースマップを有効にする
-              // sourceMap: true,
+              sourceMap: params.enabledSourceMap,
               postcssOptions: {
                 plugins: [
                   // Autoprefixerを有効化
@@ -93,7 +102,7 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               // ソースマップの利用有無
-              sourceMap: enabledSourceMap,
+              sourceMap: params.enabledSourceMap,
             },
           },
         ],
@@ -101,14 +110,12 @@ module.exports = {
     ],
   },
 
-  // plugins: [
-  //   // CSSファイルを外だしにするプラグイン
-  //   new MiniCssExtractPlugin({
-  //     // ファイル名を設定します
-  //     filename: 'style.css',
-  //   }),
-  // ],
+  plugins: [
+    new CleanWebpackPlugin(),
+
+    ...htmlGlobPlugins(entries, './src'), //  追加
+  ],
 
   // ES5(IE11等)向けの指定（webpack 5以上で必要）
   target: ['web', 'es5'],
-};
+});
