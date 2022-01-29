@@ -1,1 +1,0 @@
-!function(){"use strict";var o;o="Hello World",document.body.innerHTML="".concat(o),console.log("".concat(o,"を出力しました"))}();
