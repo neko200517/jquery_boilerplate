@@ -116,6 +116,11 @@ module.exports = (params) => ({
     ...htmlGlobPlugins(entries, './src'), //  追加
   ],
 
+  devServer: {
+    static: 'dist',
+    open: true,
+  },
+
   // ES5(IE11等)向けの指定（webpack 5以上で必要）
   target: ['web', 'es5'],
 });
