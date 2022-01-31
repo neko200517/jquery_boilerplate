@@ -1,0 +1,141 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li,
+label {
+  color: #595455;
+}
+.navbar-brand {
+  color: #595455 !important;
+}
+
+.terms {
+  background-color: #f5f5f5;
+}
+
+.text-notice {
+  color: blueviolet;
+}
+
+small {
+  color: #595455;
+}
+
+::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #ccc !important;
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #ccc !important;
+}
+::placeholder {
+  /* Others */
+  color: #ccc !important;
+}
+
+.form-control {
+  color: #595455;
+}
+
+.btn-primary {
+  background-color: #4c6cb3;
+  border-color: #4c6cb3;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:active:focus,
+.btn-primary:active:hover,
+.btn-primary:active.focus,
+.btn-primary.active,
+.btn-primary.active:focus,
+.btn-primary.active:hover,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary,
+.open > .dropdown-toggle.btn-primary:hover,
+.open > .dropdown-toggle.btn-primary:focus,
+.open > .dropdown-toggle.btn-primary.focus,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled.focus,
+.btn-primary[disabled].focus,
+fieldset[disabled] .btn-primary.focus {
+  background-color: #4c6cb3;
+  border-color: #4c6cb3;
+}
+
+.nav-pills .nav-link.active {
+  background-color: #4c6cb3;
+  border-color: #4c6cb3;
+}
+
+.btn-num,
+.btn-num[disabled] {
+  background-color: #e9ecef;
+  color: #595455;
+}
+
+.btn-clear,
+.btn-clear[disabled] {
+  background-color: #ffa;
+  color: #595455;
+}
+
+.home-item-morning,
+.fa-sun {
+  color: #e9546b;
+}
+.home-item-night,
+.fa-moon {
+  color: #2ca9e1;
+}
+.text-success {
+  color: #00a381 !important;
+}
+.home-item-high {
+  color: #595455;
+}
+.home-item-low {
+  color: #595455;
+}
+
+.home-item-subtitle {
+  color: #595455;
+}
+
+.home-item-text-mute {
+  color: #ccc;
+}
+
+.card-weight {
+  background-color: #fbfaf5 !important;
+}
+.card-bp1 {
+  /* background-color: #ffbf7f !important; */
+  background-color: #fbfaf5 !important;
+}
+.card-bp2 {
+  /* background-color: #ffbf7f !important; */
+  background-color: #fbfaf5 !important;
+}
+.card-bp3 {
+  /* background-color: #7fbfff !important; */
+  background-color: #fbfaf5 !important;
+}
+.card-bp4 {
+  /* background-color: #7fbfff !important; */
+  background-color: #fbfaf5 !important;
+}
+.card-step {
+  background-color: #fbfaf5 !important;
+}

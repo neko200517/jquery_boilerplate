@@ -2,28 +2,54 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/js/another.js":
-/*!***************************!*\
-  !*** ./src/js/another.js ***!
-  \***************************/
+/***/ "./src/js/logout.js":
+/*!**************************!*\
+  !*** ./src/js/logout.js ***!
+  \**************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
-/* harmony import */ var _bootstrap_custom_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./bootstrap-custom.scss */ "./src/js/bootstrap-custom.scss");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/js/style.scss");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_3__);
-// import '@babel/polyfill';
+/* harmony import */ var aws_sdk_global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! aws-sdk/global */ "./node_modules/aws-sdk/browser.js");
+/* harmony import */ var aws_sdk_global__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(aws_sdk_global__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var amazon_cognito_identity_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! amazon-cognito-identity-js */ "./node_modules/amazon-cognito-identity-js/es/index.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_config */ "./src/js/_config.js");
+/* harmony import */ var _localStorage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_localStorage */ "./src/js/_localStorage.js");
+/* harmony import */ var _sessionStorage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_sessionStorage */ "./src/js/_sessionStorage.js");
+/* harmony import */ var _utiltity__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./_utiltity */ "./src/js/_utiltity.js");
 
 
 
 
-var name = 'Another';
-var title = jquery__WEBPACK_IMPORTED_MODULE_3___default()('title');
-var h1 = jquery__WEBPACK_IMPORTED_MODULE_3___default()('h1');
-title.text(name);
-h1.text(name);
+
+ //------------------------------------------------------------------//
+
+$(function () {
+  startup.init();
+  onSignOut();
+});
+$(window).delay(3000).queue(function () {
+  (0,_utiltity__WEBPACK_IMPORTED_MODULE_5__.gotoLoginPage)();
+}); // サインアウト
+
+var onSignOut = function onSignOut() {
+  var userPool = new amazon_cognito_identity_js__WEBPACK_IMPORTED_MODULE_1__.CognitoUserPool(_config__WEBPACK_IMPORTED_MODULE_2__._config.cognito);
+  var cognitoUser = userPool.getCurrentUser();
+
+  if (cognitoUser != null) {
+    // セッションデータの削除
+    _sessionStorage__WEBPACK_IMPORTED_MODULE_4__._sessionStorage.removeAll(); // ローカルデータの削除
+
+
+    _localStorage__WEBPACK_IMPORTED_MODULE_3__._localStorage.removeAll(); // AWSのセッションデータを削除
+
+
+    if ((aws_sdk_global__WEBPACK_IMPORTED_MODULE_0___default().config.credentials) && (aws_sdk_global__WEBPACK_IMPORTED_MODULE_0___default().config.credentials.clearCachedId)) {
+      aws_sdk_global__WEBPACK_IMPORTED_MODULE_0___default().config.credentials.clearCachedId();
+    }
+
+    cognitoUser.signOut();
+  }
+};
 
 /***/ })
 
@@ -168,7 +194,7 @@ h1.text(name);
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"another": 0
+/******/ 			"logout": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -220,9 +246,9 @@ h1.text(name);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendor"], function() { return __webpack_require__("./src/js/another.js"); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendor"], function() { return __webpack_require__("./src/js/logout.js"); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=another.js.map
+//# sourceMappingURL=logout.js.map

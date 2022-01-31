@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <noscript
+      ><meta http-equiv="refresh" content="0;URL=error.html"
+    /></noscript>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>ログイン</title>
+  <link href="css/vendor.css" rel="stylesheet"></head>
+  <body style="display: none">
+    <div class="_navbar"></div>
+
+    <div class="container">
+      <h1 class="display-1">ログイン</h1>
+      <hr />
+      <form>
+        <div class="mb-3">
+          <label for="txtUserName" class="form-label">ユーザー名</label>
+          <input
+            type="text"
+            class="form-control form-control-lg"
+            id="txtUserName"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="txtPassword" class="form-label">パスワード</label>
+          <input
+            type="password"
+            class="form-control form-control-lg"
+            id="txtPassword"
+          />
+        </div>
+        <input
+          id="btnLogin"
+          type="submit"
+          value="ログイン"
+          class="btn btn-primary btn-lg rounded-pill w-100 mt-2"
+        />
+      </form>
+    </div>
+  <script defer src="./js/vendor.js"></script><script defer src="./js/login.js"></script></body>
+</html>

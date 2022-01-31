@@ -1,0 +1,80 @@
+body {
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN',
+    'Hiragino Sans', Meiryo, sans-serif;
+  padding-top: 4.5rem;
+}
+
+.class::before {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  content: '\f521';
+}
+
+.selector-for-some-widget {
+  box-sizing: content-box;
+}
+
+.container {
+  width: 95%;
+  max-width: 640px;
+}
+
+.terms {
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 0.85rem;
+  border-radius: 5px;
+}
+
+.text-right {
+  text-align: right;
+}
+.btn-number-all-wrapper {
+  height: 640px;
+}
+@media only screen and (max-width: 480px) {
+  .btn-number-all-wrapper {
+    max-height: 320px;
+  }
+}
+
+input,
+.card {
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
+}
+
+.input-group-text {
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.1));
+}
+
+.btn {
+  filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.2));
+}
+
+.navbar {
+  filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.4));
+}
+
+/* iPhone 5/SE */
+@media only screen and (max-width: 320px) {
+  .home-item-text {
+    font-size: 2.2vmax;
+  }
+}
+/* その他スマホ */
+@media only screen and (min-width: 321px) and (max-width: 640px) {
+  .home-item-text {
+    font-size: 2.5vmax;
+  }
+}
+
+canvas {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+/*モーダルの背景の色※モーダル自体の背景ではない*/
+/* .modal-backdrop {
+  background-color: rgba(0, 0, 0, 0);
+} */

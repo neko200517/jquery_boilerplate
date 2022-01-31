@@ -3,6 +3,8 @@ const common = require('./webpack.common.js');
 const outputFile = '[name].[chunkhash]';
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Obfuscator = require('webpack-obfuscator');
+const BundleAnalyzerPlugin =
+  require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const params = {
   outputFile: outputFile,
@@ -20,5 +22,6 @@ module.exports = merge(common(params), {
       filename: `css/${outputFile}.css`,
     }),
     // new Obfuscator({ rotateUnicodeArray: true }, []),
+    // new BundleAnalyzerPlugin(),
   ],
 });
