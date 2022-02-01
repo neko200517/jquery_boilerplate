@@ -1,5 +1,7 @@
+import $ from './_jquery-with-plugins';
 import { _localStorage } from './_localStorage';
 import { _config } from './_config';
+import { getCurrentSession, isSignIn } from './_cognito';
 
 /**
  * HTMLページの埋め込み
@@ -16,13 +18,16 @@ export const includeHTML = (selector, filepath) => {
 // ローディング用
 export const loading = {
   toggle: () => {
-    $('#modalLoading').modal('toggle');
+    window._modal.toggle();
+    // $('#modalLoading').modal('toggle');
   },
   show: () => {
-    $('#modalLoading').modal('show');
+    window._modal.show();
+    // $('#modalLoading').modal('show');
   },
   hide: () => {
-    $('#modalLoading').modal('hide');
+    window._modal.hide();
+    // $('#modalLoading').modal('hide');
   },
 };
 
@@ -91,6 +96,9 @@ const getIdToken = async () => {
   const session = await getCurrentSession().catch(() => {
     return null;
   });
+  if (!session) {
+    return null;
+  }
   return session.idToken.jwtToken;
 };
 
@@ -105,7 +113,6 @@ export const getApiAsync = async (url, json) => {
     gotoLoginPage();
     return;
   }
-
   json = JSON.parse(JSON.stringify(json));
   url = _config.env.baseUrl + url;
   const keys = Object.keys(json);
@@ -116,7 +123,6 @@ export const getApiAsync = async (url, json) => {
       param += '&';
     }
   });
-
   const headers = {
     method: 'get',
     headers: {
@@ -141,13 +147,13 @@ export const getApiAsync = async (url, json) => {
  * @returns
  */
 export const postApiAsync = async (url, json) => {
-  if (!isSignIn()) {
+  const token = await getIdToken();
+  if (!token) {
     gotoLoginPage();
     return;
   }
   json = JSON.parse(JSON.stringify(json));
   url = _config.env.baseUrl + url;
-  const token = await getIdToken();
   const deffer = new $.Deferred();
   $.ajax({
     type: 'post',
@@ -161,16 +167,15 @@ export const postApiAsync = async (url, json) => {
     scriptCharset: 'utf-8',
     success: (data) => {
       if (data.states == 200 || data.status == 201) {
-        deffer.resolve(data);
+        return deffer.resolve(data);
       } else {
-        deffer.reject(data);
+        return deffer.reject(data);
       }
     },
     error: (data) => {
-      deffer.reject(data);
+      return deffer.reject(data);
     },
   });
-  return deffer.promise();
 };
 
 /**
@@ -210,7 +215,7 @@ export const isLoginPage = () => {
 /**
  * httpを検出したらhttpsでリダイレクト
  */
-export const RedirectToHttps = () => {
+export const redirectToHttps = () => {
   const url = location.href;
   if (url.match(/http:/)) {
     const newUrl = url.replace('http:', 'https:');

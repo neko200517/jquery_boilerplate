@@ -1,9 +1,14 @@
+import $ from './lib/_jquery-with-plugins';
+import 'babel-polyfill';
+import 'bootstrap';
+import '../css/style.scss';
+import * as startup from './lib/_startup';
 import AWS from 'aws-sdk/global';
 import * as AmazonCognitoIdentity from 'amazon-cognito-identity-js';
-import { _config } from './_config';
-import { _localStorage } from './_localStorage';
-import { _sessionStorage } from './_sessionStorage';
-import { gotoLoginPage } from './_utiltity';
+import { _config } from './lib/_config';
+import { _localStorage } from './lib/_localStorage';
+import { _sessionStorage } from './lib/_sessionStorage';
+import { gotoLoginPage } from './lib/_utiltity';
 
 //------------------------------------------------------------------//
 

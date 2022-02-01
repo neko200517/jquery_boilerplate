@@ -35,9 +35,6 @@ export function isSignIn() {
  */
 export function getCurrentUser() {
   const userPool = new AmazonCognitoIdentity.CognitoUserPool(_config.cognito);
-  if (!userPool) {
-    return null;
-  }
   const cognitoUser = userPool.getCurrentUser();
   return cognitoUser;
 }

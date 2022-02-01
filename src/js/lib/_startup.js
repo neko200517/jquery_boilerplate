@@ -1,16 +1,18 @@
+import $ from './_jquery-with-plugins';
+import { Modal } from 'bootstrap';
 import { initCognitoProvider, isSignIn } from './_cognito';
 import {
   isConfirm,
   isLoginPage,
   gotoLoginPage,
-  RedirectToHttps,
+  redirectToHttps,
 } from './_utiltity';
 import { _config } from './_config';
 
 export const init = () => {
   // httpsにリダイレクト
   if (_config.app.version == 'release') {
-    RedirectToHttps();
+    redirectToHttps();
   }
 
   // 非表示
@@ -40,8 +42,7 @@ export const init = () => {
   }
 
   $(() => {
-    // ナビバーを表示
-    addNavbar();
+    addHtmlParts();
 
     // 非表示を解除
     if (isSignIn()) {
@@ -51,10 +52,13 @@ export const init = () => {
         $('body').show();
       }
     }
+    // 全ての読み込みが完了したことを宣言する
+    $(window).trigger('_ready');
   });
 };
 
-const addNavbar = () => {
+// Htmlの共通パーツを描画
+const addHtmlParts = () => {
   const navbar = document.querySelector('._navbar');
   navbar.innerHTML = `
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -139,6 +143,5 @@ const addNavbar = () => {
     $('#nav-logout').remove();
   }
 
-  // 全ての読み込みが完了したことを宣言する
-  $(window).trigger('_ready');
+  window._modal = new Modal('#modalLoading');
 };

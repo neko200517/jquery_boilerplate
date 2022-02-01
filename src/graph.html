@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>グラフ</title>
+  </head>
+  <body style="display: none">
+    <div class="_navbar"></div>
+    <div class="container">
+      <h1 class="display-1">グラフ</h1>
+      <hr />
+
+      <p class="text-danger" id="lblWarning" style="display: none">
+        ※面談開始日が登録されていないので週グラフは表示されません。
+      </p>
+
+      <ul class="nav nav-pills nav-fill mb-3">
+        <li class="nav-item">
+          <a class="nav-link active" id="btnChartDate">日グラフ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="btnChartMonth">週グラフ</a>
+        </li>
+      </ul>
+
+      <div
+        class="
+          d-flex
+          justify-content-between
+          align-items-center
+          mb-3
+          date-wrapper
+        "
+      >
+        <button class="btn btn-primary date-wrapper" id="btnPrev">◀</button>
+        <h2 class="text-center date-wrapper" id="lblDateTime"></h2>
+        <button class="btn btn-primary date-wrapper" id="btnNext">▶</button>
+      </div>
+
+      <div class="card mb-3" id="card-weight"></div>
+      <div class="card mb-3" id="card-bp"></div>
+      <div class="card mb-3" id="card-step"></div>
+
+      <footer class="mx-auto">
+        <div class="d-flex justify-content-center gap-2">
+          <a
+            href="home.html"
+            class="btn btn-primary rounded-pill btn-lg w-100"
+            id="btnHome"
+            >ホーム</a
+          >
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

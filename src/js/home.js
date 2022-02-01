@@ -1,25 +1,25 @@
+import $ from './lib/_jquery-with-plugins';
 import 'babel-polyfill';
 import 'bootstrap';
 import '../css/style.scss';
-import * as startup from './_startup';
+import * as startup from './lib/_startup';
 import {
   flash,
   getApiAsync,
   getParam,
+  isNull,
   loading,
   postApiAsync,
   translation,
-} from './_utiltity';
-import { _config } from './_config';
-import { _localStorage } from './_localStorage';
-import { _sessionStorage } from './_sessionStorage';
-import { getCurrentUser } from './_cognito';
+} from './lib/_utiltity';
+import { _config } from './lib/_config';
+import { _localStorage } from './lib/_localStorage';
+import { _sessionStorage } from './lib/_sessionStorage';
+import { getCurrentUser } from './lib/_cognito';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ja';
 
 //------------------------------------------------------------------//
-
-$(() => {
-  startup.init();
-});
 
 // コントロール_宣言
 const _controls = {
@@ -34,6 +34,12 @@ const _controls = {
 let _currentDate;
 const _username = getCurrentUser().username;
 
+//------------------------------------------------------------------//
+
+$(() => {
+  startup.init();
+});
+
 $(window).on('_ready', () => {
   $(window).trigger('_refresh');
 
@@ -41,7 +47,7 @@ $(window).on('_ready', () => {
   // todo:5 ホーム画面の表示日時は本日を基本にする
   let fdate = getParam('date');
   if (!fdate) {
-    const fnow = moment().format('YYYYMMDD');
+    const fnow = dayjs().format('YYYYMMDD');
     fdate = fnow;
   }
   _currentDate = toDate(fdate);
@@ -63,7 +69,7 @@ const toDate = (fdate) => {
     6,
     2
   )}`;
-  return moment(new Date(date));
+  return dayjs(new Date(date));
 };
 
 // 再描画
@@ -78,7 +84,7 @@ const refresh = (value) => {
   $(window).trigger('_refresh');
 
   // todo:1 未来の入力は不可
-  const fnow = moment().format('YYYYMMDD');
+  const fnow = dayjs().format('YYYYMMDD');
   _controls.btnNext.prop('disabled', fnow == fdate);
   if (fnow == fdate) {
     _controls.btnNext.removeClass('btn-primary');

@@ -2,6 +2,9 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackWatchedGlobEntries = require('webpack-watched-glob-entries-plugin');
+const webpack = require('webpack');
+const { resolve } = require('path');
+const src = resolve(`${__dirname}/src`);
 
 const entries = WebpackWatchedGlobEntries.getEntries(
   [path.resolve(__dirname, './src/js/**/*.js')],
@@ -114,6 +117,12 @@ module.exports = (params) => ({
     new CleanWebpackPlugin(),
 
     ...htmlGlobPlugins(entries, './src'), //  追加
+
+    new webpack.ProvidePlugin({
+      jQuery: 'jquery',
+      // $: 'src/js/lib/_jquery-with-plugins.js',
+      $: 'jquery-confirm/dist/jquery-confirm.min.js',
+    }),
   ],
 
   devServer: {
