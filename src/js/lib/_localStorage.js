@@ -1,7 +1,7 @@
 /**
  * ローカルストレージの管理
  */
-export class _localStorage {
+export default class AppLocalStorage {
   static config = {
     confirmState: 'currentConfirmState',
   };

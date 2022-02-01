@@ -1,4 +1,4 @@
-export const _config = {
+export default {
   cognito: {
     UserPoolId: 'ap-northeast-1_2m3cECLQP',
     ClientId: '58r8k0lq4iburhmvs45qfnqiak',

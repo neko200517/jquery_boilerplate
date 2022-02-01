@@ -1,7 +1,7 @@
 import $ from './_jquery-with-plugins';
-import { _localStorage } from './_localStorage';
-import { _config } from './_config';
-import { getCurrentSession, isSignIn } from './_cognito';
+import AppLocalStorage from './_localStorage';
+import AppConfig from './_config';
+import { getCurrentSession } from './_cognito';
 
 /**
  * HTMLページの埋め込み
@@ -110,11 +110,11 @@ const getIdToken = async () => {
 export const getApiAsync = async (url, json) => {
   const token = await getIdToken();
   if (!token) {
-    gotoLoginPage();
+    util.gotoLoginPage();
     return;
   }
   json = JSON.parse(JSON.stringify(json));
-  url = _config.env.baseUrl + url;
+  url = AppConfig.env.baseUrl + url;
   const keys = Object.keys(json);
   let param = '?';
   keys.forEach((key, i) => {
@@ -149,11 +149,11 @@ export const getApiAsync = async (url, json) => {
 export const postApiAsync = async (url, json) => {
   const token = await getIdToken();
   if (!token) {
-    gotoLoginPage();
+    util.gotoLoginPage();
     return;
   }
   json = JSON.parse(JSON.stringify(json));
-  url = _config.env.baseUrl + url;
+  url = AppConfig.env.baseUrl + url;
   const deffer = new $.Deferred();
   $.ajax({
     type: 'post',
@@ -183,7 +183,7 @@ export const postApiAsync = async (url, json) => {
  * @returns
  */
 export const isConfirm = () => {
-  const v = _localStorage.getConfirmState();
+  const v = AppLocalStorage.getConfirmState();
   return v && JSON.parse(v.toLowerCase());
 };
 
@@ -207,7 +207,7 @@ export const gotoSignOutPage = () => {
   location.href = 'signout.html';
 };
 
-// ルートページか
+// ログインページか
 export const isLoginPage = () => {
   return location.href.match(/login/);
 };

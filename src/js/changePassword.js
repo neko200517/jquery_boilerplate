@@ -2,30 +2,21 @@ import $ from './lib/_jquery-with-plugins';
 import 'babel-polyfill';
 import 'bootstrap';
 import '../css/style.scss';
-import * as startup from './lib/_startup';
-import {
-  flash,
-  getApiAsync,
-  isConfirm,
-  loading,
-  postApiAsync,
-  translation,
-} from './lib/_utiltity';
-import AWS from 'aws-sdk/global';
+import startup from './lib/_startup';
+import * as util from './lib/_utiltity';
 import * as AmazonCognitoIdentity from 'amazon-cognito-identity-js';
-import { _config } from './lib/_config';
-import { _localStorage } from './lib/_localStorage';
-import { _sessionStorage } from './lib/_sessionStorage';
+import AppConfig from './lib/_config';
+import AppLocalStorage from './lib/_localStorage';
 import { getCurrentUser } from './lib/_cognito';
 
 //------------------------------------------------------------------//
 
 $(() => {
-  startup.init();
+  startup();
 });
 
 $(window).on('_ready', () => {
-  if (!isConfirm()) $('#lblTutorial1').show();
+  if (!util.isConfirm()) $('#lblTutorial1').show();
   $('#btnOk').on('click', (e) => {
     e.preventDefault();
     onChangePassword();
@@ -38,23 +29,23 @@ const onChangePassword = () => {
   var newPassword1 = $('#txtNewPassword1').val();
   var newPassword2 = $('#txtNewPassword2').val();
   if (!oldPassword) {
-    flash('現在のパスワードを入力してください。');
+    util.flash('現在のパスワードを入力してください。');
     return;
   }
   if (!newPassword1) {
-    flash('新しいパスワードを入力してください。');
+    util.flash('新しいパスワードを入力してください。');
     return;
   }
   if (!newPassword2) {
-    flash('パスワード再入力を入力してください。');
+    util.flash('パスワード再入力を入力してください。');
     return;
   }
   if (newPassword1 != newPassword2) {
-    flash('新しいパスワードが一致しません。');
+    util.flash('新しいパスワードが一致しません。');
     return;
   }
 
-  const userPool = new AmazonCognitoIdentity.CognitoUserPool(_config.cognito);
+  const userPool = new AmazonCognitoIdentity.CognitoUserPool(AppConfig.cognito);
   const cognitoUser = userPool.getCurrentUser();
 
   if (cognitoUser != null) {
@@ -69,19 +60,21 @@ const onChangePassword = () => {
             newPassword1,
             function (err, result) {
               if (err) {
-                flash(translation(err, 'パスワードの変更に失敗しました。'));
+                util.flash(
+                  util.translation(err, 'パスワードの変更に失敗しました。')
+                );
               } else {
                 setConfirm();
               }
             }
           );
         } else {
-          flash('トークン情報の再取得に失敗しました。');
+          util.flash('トークン情報の再取得に失敗しました。');
         }
       }
     });
   } else {
-    flash('パスワードの変更に失敗しました。');
+    util.flash('パスワードの変更に失敗しました。');
   }
 };
 
@@ -91,10 +84,11 @@ const setConfirm = async () => {
     username: getCurrentUser().username,
     confirm: true,
   };
-  const url = _config.api.setUser;
-  await postApiAsync(url, json)
+  const url = AppConfig.api.setUser;
+  await util
+    .postApiAsync(url, json)
     .then(() => {
-      _localStorage.setConfirmState(true);
+      AppLocalStorage.setConfirmState(true);
       location.href = 'home.html';
     })
     .catch(() => {

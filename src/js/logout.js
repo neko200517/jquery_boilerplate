@@ -2,43 +2,28 @@ import $ from './lib/_jquery-with-plugins';
 import 'babel-polyfill';
 import 'bootstrap';
 import '../css/style.scss';
-import * as startup from './lib/_startup';
-import AWS from 'aws-sdk/global';
-import * as AmazonCognitoIdentity from 'amazon-cognito-identity-js';
-import { _config } from './lib/_config';
-import { _localStorage } from './lib/_localStorage';
-import { _sessionStorage } from './lib/_sessionStorage';
-import { gotoLoginPage } from './lib/_utiltity';
+import startup from './lib/_startup';
+import * as util from './lib/_utiltity';
+import AppLocalStorage from './lib/_localStorage';
+import AppSessionStorage from './lib/_sessionStorage';
+import { isSignIn, signOut } from './lib/_cognito';
 
 //------------------------------------------------------------------//
 
 $(() => {
-  startup.init();
+  startup(!isSignIn());
   onSignOut();
 });
 
-$(window)
-  .delay(3000)
-  .queue(function () {
-    gotoLoginPage();
-  });
-
 // サインアウト
-const onSignOut = () => {
-  const userPool = new AmazonCognitoIdentity.CognitoUserPool(_config.cognito);
-  const cognitoUser = userPool.getCurrentUser();
-  if (cognitoUser != null) {
-    // セッションデータの削除
-    _sessionStorage.removeAll();
+const onSignOut = async () => {
+  await signOut();
+  AppSessionStorage.removeAll();
+  AppLocalStorage.removeAll();
 
-    // ローカルデータの削除
-    _localStorage.removeAll();
-
-    // AWSのセッションデータを削除
-    if (AWS.config.credentials && AWS.config.credentials.clearCachedId) {
-      AWS.config.credentials.clearCachedId();
-    }
-
-    cognitoUser.signOut();
-  }
+  $(window)
+    .delay(3000)
+    .queue(function () {
+      util.gotoLoginPage();
+    });
 };

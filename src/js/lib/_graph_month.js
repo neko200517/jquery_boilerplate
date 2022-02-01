@@ -1,12 +1,12 @@
 import $ from './_jquery-with-plugins';
-import { getApiAsync, loading } from './_utiltity';
-import { _config } from './_config';
-import { ChartBase } from './_graph_base';
+import * as util from './_utiltity';
+import AppConfig from './_config';
+import ChartBase from './_graph_base';
 
 //------------------------------------------------------------------//
 
 // 月グラフ
-export class ChartMonth extends ChartBase {
+export default class ChartMonth extends ChartBase {
   // コンストラクタ
   constructor() {
     super();
@@ -16,13 +16,13 @@ export class ChartMonth extends ChartBase {
   // データの用意
   async getData(username, value, tag = null) {
     let results = null;
-    const url = _config.api.getGraphMonth;
+    const url = AppConfig.api.getGraphMonth;
     const json = {
       username: username,
       index: value,
       max: this.chartMaxValue,
     };
-    await getApiAsync(url, json).then((x) => (results = x.results));
+    await util.getApiAsync(url, json).then((x) => (results = x.results));
 
     let lblWeeks = [];
     let dataWeight = [];

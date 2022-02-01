@@ -1,14 +1,14 @@
 import $ from './_jquery-with-plugins';
-import { getApiAsync, loading } from './_utiltity';
-import { _config } from './_config';
+import * as util from './_utiltity';
+import AppConfig from './_config';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ja';
-import { ChartBase } from './_graph_base';
+import ChartBase from './_graph_base';
 
 //------------------------------------------------------------------//
 
 // 日グラフ
-export class ChartDate extends ChartBase {
+export default class ChartDate extends ChartBase {
   currentDate;
 
   // コンストラクタ
@@ -52,9 +52,9 @@ export class ChartDate extends ChartBase {
     );
 
     if (isRereshChart) {
-      loading.show();
+      util.loading.show();
       await this.refreshChart(this.username, this.addDate);
-      loading.hide();
+      util.loading.hide();
     }
   };
 
@@ -111,13 +111,13 @@ export class ChartDate extends ChartBase {
     value = this.addDate;
 
     let obj = null;
-    const url = _config.api.getGraphDate;
+    const url = AppConfig.api.getGraphDate;
     const json = {
       username: username,
       addDate: value,
       condition_date: this.currentDate.format('YYYYMMDD'),
     };
-    await getApiAsync(url, json).then((x) => (obj = x));
+    await util.getApiAsync(url, json).then((x) => (obj = x));
 
     let lblWeeks = [];
     let dataWeight = [];

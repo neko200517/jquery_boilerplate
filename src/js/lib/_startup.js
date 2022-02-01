@@ -1,30 +1,27 @@
 import $ from './_jquery-with-plugins';
 import { Modal } from 'bootstrap';
 import { initCognitoProvider, isSignIn } from './_cognito';
-import {
-  isConfirm,
-  isLoginPage,
-  gotoLoginPage,
-  redirectToHttps,
-} from './_utiltity';
-import { _config } from './_config';
+import * as util from './_utiltity';
+import AppConfig from './_config';
 
-export const init = () => {
+export default (isHidden = true) => {
   // httpsにリダイレクト
-  if (_config.app.version == 'release') {
-    redirectToHttps();
+  if (AppConfig.app.version == 'release') {
+    util.redirectToHttps();
   }
 
   // 非表示
-  $('body').css('display', 'none');
+  if (isHidden) {
+    $('body').css('display', 'none');
+  }
 
   // 認証プロバイダの初期化
   initCognitoProvider();
 
   // 直URLを踏んだときの対策
   if (isSignIn()) {
-    if (isConfirm()) {
-      if (isLoginPage()) {
+    if (util.isConfirm()) {
+      if (util.isLoginPage()) {
         location.href = 'home.html';
       }
     } else {
@@ -36,8 +33,8 @@ export const init = () => {
       }
     }
   } else {
-    if (!isLoginPage()) {
-      gotoLoginPage();
+    if (!util.isLoginPage()) {
+      util.gotoLoginPage();
     }
   }
 
@@ -45,10 +42,10 @@ export const init = () => {
     addHtmlParts();
 
     // 非表示を解除
-    if (isSignIn()) {
+    if (isSignIn() || !isHidden) {
       $('body').show();
     } else {
-      if (isLoginPage) {
+      if (util.isLoginPage()) {
         $('body').show();
       }
     }
@@ -131,10 +128,10 @@ const addHtmlParts = () => {
     </div>
   `;
 
-  $('.navbar-brand').text(_config.app.productName);
+  $('.navbar-brand').text(AppConfig.app.productName);
 
   if (isSignIn()) {
-    if (!isConfirm()) {
+    if (!util.isConfirm()) {
       $('.nav-signined_contents').remove();
     }
     $('#nav-login').remove();

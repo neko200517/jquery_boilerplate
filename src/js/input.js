@@ -3,21 +3,9 @@ import 'babel-polyfill';
 import 'bootstrap';
 import '../css/style.scss';
 import 'jquery-confirm/css/jquery-confirm.css';
-import * as startup from './lib/_startup';
-import {
-  flash,
-  flash_type,
-  getApiAsync,
-  getParam,
-  isNull,
-  loading,
-  postApiAsync,
-  showConfirm,
-  translation,
-} from './lib/_utiltity';
-import { _config } from './lib/_config';
-import { _localStorage } from './lib/_localStorage';
-import { _sessionStorage } from './lib/_sessionStorage';
+import startup from './lib/_startup';
+import * as util from './lib/_utiltity';
+import AppConfig from './lib/_config';
 import { getCurrentUser } from './lib/_cognito';
 
 //------------------------------------------------------------------//
@@ -54,12 +42,12 @@ const MAX_INPUTABLE = 5;
 
 //------------------------------------------------------------------//
 
-startup.init();
+startup();
 
 $(window).on('_ready', () => {
   // 日付(YYYYMMDD)の読み込み
   // todo:5 ホーム画面の表示日時は本日を基本にする
-  _currentFormatDate = getParam('date');
+  _currentFormatDate = util.getParam('date');
 
   // ボタンの生成
   createButtons();
@@ -81,8 +69,8 @@ $(window).on('_ready', () => {
 
 // ボタンの生成
 const createButtons = async () => {
-  loading.show();
-  const inputType = getParam('type');
+  util.loading.show();
+  const inputType = util.getParam('type');
   const btns = ['1', '2', '3', '4', '5', '6', '7', '8', '9', LABEL_CLEAR, '0'];
   if (
     inputType == 'weight' ||
@@ -104,13 +92,13 @@ const createButtons = async () => {
 
   // データ読み込み
   let obj = null;
-  const url = _config.api.getCondition;
+  const url = AppConfig.api.getCondition;
   const json = {
     username: _username,
     startDate: _currentFormatDate,
     endDate: _currentFormatDate,
   };
-  await getApiAsync(url, json).then((x) => (obj = x.results[0]));
+  await util.getApiAsync(url, json).then((x) => (obj = x.results[0]));
 
   let props = {};
   let val = null;
@@ -247,9 +235,9 @@ const createButtons = async () => {
       });
       break;
   }
-  val = !isNull(val) ? val : '';
+  val = !util.isNull(val) ? val : '';
   _controls.txtValue.val(val);
-  loading.hide();
+  util.loading.hide();
 };
 
 // 数値ボタン_押下
@@ -278,7 +266,7 @@ const onNumPad_Click = (e) => {
   // 文字数チェック
   const tmp = txt.match(/[0-9]/g);
   if (tmp && tmp.length >= MAX_INPUTABLE) {
-    flash('これ以上入力できません。');
+    util.flash('これ以上入力できません。');
     return;
   }
 
@@ -325,7 +313,7 @@ const onNumpadSave = async (props) => {
       CONFIRM_CONTENT_RANGE +
       `<br><div class="text-primary">
       許容値：${props.minValue} ~ ${props.maxValue}</div>`;
-    const result = await showConfirm({ text: text, title: CONFIRM_TITLE });
+    const result = await util.showConfirm({ text: text, title: CONFIRM_TITLE });
     _inputed = false;
     if (!result) {
       setButtonsEnabled(true);
@@ -347,7 +335,10 @@ const onNumpadSave = async (props) => {
         `<br><div class="text-primary">最高血圧：${ret.up}
         <span style="margin-right: 12px;"></span>
         最低血圧：${ret.down}</div>`;
-      const result = await showConfirm({ text: text, title: CONFIRM_TITLE });
+      const result = await util.showConfirm({
+        text: text,
+        title: CONFIRM_TITLE,
+      });
       _inputed = false;
       if (!result) {
         setButtonsEnabled(true);
@@ -367,7 +358,7 @@ const onNumpadSave = async (props) => {
       `<br><div class="text-primary">直近の値：${lastValue}
       <span style="margin-right: 12px;"></span>
       許容値：${min} ~ ${max}</div>`;
-    const result = await showConfirm({ text: text, title: CONFIRM_TITLE });
+    const result = await util.showConfirm({ text: text, title: CONFIRM_TITLE });
     _inputed = false;
     if (result) {
       onNumpadSave_Common(json);
@@ -380,14 +371,16 @@ const onNumpadSave = async (props) => {
 // 直近のデータを取得
 const getLastValue = async (prop) => {
   let results = null;
-  const url = _config.api.getCondition;
+  const url = AppConfig.api.getCondition;
   const json = {
     username: _username,
-    startDate: '19000101',
+    startDate: '20220101',
     endDate: _currentFormatDate,
     orderBy: 'condition_date',
   };
-  await getApiAsync(url, json).then((x) => (results = x.results));
+  await util.getApiAsync(url, json).then((x) => (results = x.results));
+
+  console.log(results);
 
   let lastValue = 0;
   results = results.reverse();
@@ -409,16 +402,15 @@ const getLastValue = async (prop) => {
 // 血圧を比較。上より下が大きければtrueを返す
 const isBpUpper = async (type, value) => {
   let results = null;
-  const url = _config.api.getCondition;
+  const url = AppConfig.api.getCondition;
   const json = {
     username: _username,
     startDate: _currentFormatDate,
     endDate: _currentFormatDate,
   };
-  await getApiAsync(url, json).then((x) => (results = x.results));
+  await util.getApiAsync(url, json).then((x) => (results = x.results));
 
-  let v;
-  let result;
+  let v, result, up, down;
   if (results.length > 0) {
     switch (type) {
       case 'bp1':
@@ -458,11 +450,11 @@ const isBpUpper = async (type, value) => {
 const isEnableValue = (props) => {
   const value = _controls.txtValue.val();
   if (value == '' || value == null || value == undefined) {
-    flash('未入力です。');
+    util.flash('未入力です。');
     return false;
   }
   if (value.slice(-1) == '.') {
-    flash('数値を入力してください。');
+    util.flash('数値を入力してください。');
     return false;
   }
   return true;
@@ -490,23 +482,26 @@ const setButtonsEnabled = (enabled) => {
 
 // 共通処理_保存
 const onNumpadSave_Common = async (json) => {
-  loading.show();
-  const url = _config.api.setCondition;
-  await postApiAsync(url, json)
+  util.loading.show();
+  const url = AppConfig.api.setCondition;
+  await util
+    .postApiAsync(url, json)
     .then(() => {
       setButtonsEnabled(false);
-      loading.hide();
-      flash('登録に成功しました。', flash_type.success);
+      util.loading.hide();
+      util.flash('登録に成功しました。', util.flash_type.success);
       // todo:3 登録後、ホーム画面に戻る
       $(window)
         .delay(1000)
         .queue(() => {
-          const param = getParam('date') ? `?date=${getParam('date')}` : '';
+          const param = util.getParam('date')
+            ? `?date=${util.getParam('date')}`
+            : '';
           location.href = 'home.html' + param;
         });
     })
     .catch(() => {
-      loading.hide();
-      flash('登録に失敗しました。');
+      util.loading.hide();
+      util.flash('登録に失敗しました。');
     });
 };

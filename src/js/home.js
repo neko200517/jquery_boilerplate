@@ -2,19 +2,9 @@ import $ from './lib/_jquery-with-plugins';
 import 'babel-polyfill';
 import 'bootstrap';
 import '../css/style.scss';
-import * as startup from './lib/_startup';
-import {
-  flash,
-  getApiAsync,
-  getParam,
-  isNull,
-  loading,
-  postApiAsync,
-  translation,
-} from './lib/_utiltity';
-import { _config } from './lib/_config';
-import { _localStorage } from './lib/_localStorage';
-import { _sessionStorage } from './lib/_sessionStorage';
+import startup from './lib/_startup';
+import * as util from './lib/_utiltity';
+import AppConfig from './lib/_config';
 import { getCurrentUser } from './lib/_cognito';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ja';
@@ -37,7 +27,7 @@ const _username = getCurrentUser().username;
 //------------------------------------------------------------------//
 
 $(() => {
-  startup.init();
+  startup();
 });
 
 $(window).on('_ready', () => {
@@ -45,7 +35,7 @@ $(window).on('_ready', () => {
 
   // 日付(YYYYMMDD)の保存
   // todo:5 ホーム画面の表示日時は本日を基本にする
-  let fdate = getParam('date');
+  let fdate = util.getParam('date');
   if (!fdate) {
     const fnow = dayjs().format('YYYYMMDD');
     fdate = fnow;
@@ -80,7 +70,7 @@ const refresh = (value) => {
   const fdate = _currentDate.format('YYYYMMDD');
 
   // 日付変更のイベント発動
-  _config.currentFormatDate = fdate;
+  AppConfig.currentFormatDate = fdate;
   $(window).trigger('_refresh');
 
   // todo:1 未来の入力は不可
@@ -100,15 +90,15 @@ const refresh = (value) => {
 
 // カードを更新
 const refreshCard = async (username, date) => {
-  loading.show();
+  util.loading.show();
   let obj = null;
-  const url = _config.api.getCondition;
+  const url = AppConfig.api.getCondition;
   const json = {
     username: username,
     startDate: date,
     endDate: date,
   };
-  await getApiAsync(url, json).then((x) => (obj = x.results[0]));
+  await util.getApiAsync(url, json).then((x) => (obj = x.results[0]));
 
   const con = {
     weight: obj ? obj.weight : null,
@@ -202,7 +192,7 @@ const refreshCard = async (username, date) => {
                     </a>
                     `;
     _controls.cardConditions.append(html);
-    if (!isNull(x.data)) {
+    if (!util.isNull(x.data)) {
       $(`#${x.id}`).text(`${x.data.toLocaleString()}`);
       $(`#${x.id}`).addClass('text-success');
     } else {
@@ -213,7 +203,7 @@ const refreshCard = async (username, date) => {
 
   drawRefresh();
 
-  loading.hide();
+  util.loading.hide();
 };
 
 // ウィンドウ_解像度変更

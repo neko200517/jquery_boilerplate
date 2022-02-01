@@ -1,7 +1,7 @@
 /**
  * セッションストレージの管理
  */
-export class _sessionStorage {
+export default class AppSessionStorage {
   static config = {
     user: 'currentUser',
     formatDate: 'currentFormatDate',

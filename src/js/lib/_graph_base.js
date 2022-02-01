@@ -1,12 +1,12 @@
 import $ from './_jquery-with-plugins';
-import { getApiAsync, loading } from './_utiltity';
-import { _config } from './_config';
+import * as util from './_utiltity';
+import AppConfig from './_config';
 import { Chart, registerables } from 'chart.js';
 import { getCurrentUser } from './_cognito';
 
 //------------------------------------------------------------------//
 
-export class ChartBase {
+export default class ChartBase {
   // チャートインスタンス
   chartWeight;
   chartBp;
@@ -82,7 +82,7 @@ export class ChartBase {
 
   // コンポーネントの作成
   async createCardComponent() {
-    loading.show();
+    util.loading.show();
     // データの最大数を算出
     let maxValue = 1;
     await this.getPaginationMaxLength(this.username).then(
@@ -334,7 +334,7 @@ export class ChartBase {
     this.chartBp = new Chart($('#chart-bp'), configBp);
     this.chartStep = new Chart($('#chart-step'), configStep);
 
-    loading.hide();
+    util.loading.hide();
   }
 
   // 配列の平均値
@@ -463,11 +463,11 @@ export class ChartBase {
   // ページネーションの最大ページ数を求める
   async getPaginationMaxLength(username) {
     let results = null;
-    const url = _config.api.getUser;
+    const url = AppConfig.api.getUser;
     const json = {
       username: username,
     };
-    await getApiAsync(url, json).then((x) => (results = x.results));
+    await util.getApiAsync(url, json).then((x) => (results = x.results));
 
     // 面談開始日から現在の経過日 / 8 で最大週を求める
     const dt1 = results[0].interview_started_at
