@@ -21,6 +21,7 @@ const htmlGlobPlugins = (entries, srcPath) => {
         inject: 'body',
         filename: `${key}.html`,
         template: `${srcPath}/${key}.html`,
+        favicon: `${srcPath}/favicon.ico`,
         chunks: [key],
       })
   );
@@ -42,14 +43,10 @@ module.exports = (params) => ({
 
   module: {
     rules: [
-      // html
-      {
-        test: /\.html$/i,
-        loader: 'html-loader',
-      },
       // jsファイルの読み込みとコンパイル
       {
         test: /\.js$/i,
+        exclude: /(node_modules)/,
         use: [
           {
             // Babel を利用する
@@ -110,6 +107,13 @@ module.exports = (params) => ({
           },
         ],
       },
+      // css内の画像
+      {
+        // 対象となるファイルの拡張子
+        test: /\.(gif|png|jpg|svg)$/,
+        // 画像を埋め込まず任意のフォルダに保存する
+        type: 'asset/resource',
+      },
     ],
   },
 
@@ -120,8 +124,13 @@ module.exports = (params) => ({
 
     new webpack.ProvidePlugin({
       jQuery: 'jquery',
-      // $: 'src/js/lib/_jquery-with-plugins.js',
       $: 'jquery-confirm/dist/jquery-confirm.min.js',
+    }),
+
+    // assets
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'src', 'assets', 'terms.html'),
+      filename: 'assets/terms.html',
     }),
   ],
 

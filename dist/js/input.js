@@ -20,6 +20,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_utiltity__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./lib/_utiltity */ "./src/js/lib/_utiltity.js");
 /* harmony import */ var _lib_config__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./lib/_config */ "./src/js/lib/_config.js");
 /* harmony import */ var _lib_cognito__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./lib/_cognito */ "./src/js/lib/_cognito.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -489,7 +501,7 @@ var onNumpadSave = /*#__PURE__*/function () {
 
 var getLastValue = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(prop) {
-    var results, url, json, lastValue, i, x, v;
+    var results, url, json, lastValue, newResults, i, x, v;
     return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
@@ -498,7 +510,7 @@ var getLastValue = /*#__PURE__*/function () {
             url = _lib_config__WEBPACK_IMPORTED_MODULE_7__["default"].api.getCondition;
             json = {
               username: _username,
-              startDate: '20220101',
+              startDate: '19000101',
               endDate: _currentFormatDate,
               orderBy: 'condition_date'
             };
@@ -508,45 +520,44 @@ var getLastValue = /*#__PURE__*/function () {
             });
 
           case 5:
-            console.log(results);
             lastValue = 0;
-            results = results.reverse();
+            newResults = _toConsumableArray(results).reverse();
             i = 0;
 
-          case 9:
-            if (!(i < results.length)) {
-              _context3.next = 19;
+          case 8:
+            if (!(i < newResults.length)) {
+              _context3.next = 18;
               break;
             }
 
-            x = results[i];
+            x = newResults[i];
 
             if (!(x.condition_date != _currentFormatDate)) {
-              _context3.next = 16;
+              _context3.next = 15;
               break;
             }
 
             v = JSON.parse(JSON.stringify(x))[prop];
 
             if (!v) {
-              _context3.next = 16;
+              _context3.next = 15;
               break;
             }
 
             lastValue = v;
-            return _context3.abrupt("break", 19);
+            return _context3.abrupt("break", 18);
 
-          case 16:
+          case 15:
             i++;
-            _context3.next = 9;
+            _context3.next = 8;
             break;
 
-          case 19:
+          case 18:
             return _context3.abrupt("return", new Promise(function (resolve) {
               resolve(lastValue);
             }));
 
-          case 20:
+          case 19:
           case "end":
             return _context3.stop();
         }
@@ -750,11 +761,6 @@ var onNumpadSave_Common = /*#__PURE__*/function () {
 /******/ 	__webpack_require__.m = __webpack_modules__;
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/amd options */
-/******/ 	!function() {
-/******/ 		__webpack_require__.amdO = {};
-/******/ 	}();
-/******/ 	
 /******/ 	/* webpack/runtime/chunk loaded */
 /******/ 	!function() {
 /******/ 		var deferred = [];

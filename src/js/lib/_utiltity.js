@@ -110,7 +110,7 @@ const getIdToken = async () => {
 export const getApiAsync = async (url, json) => {
   const token = await getIdToken();
   if (!token) {
-    util.gotoLoginPage();
+    gotoLoginPage();
     return;
   }
   json = JSON.parse(JSON.stringify(json));
@@ -149,7 +149,7 @@ export const getApiAsync = async (url, json) => {
 export const postApiAsync = async (url, json) => {
   const token = await getIdToken();
   if (!token) {
-    util.gotoLoginPage();
+    gotoLoginPage();
     return;
   }
   json = JSON.parse(JSON.stringify(json));

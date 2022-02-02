@@ -374,18 +374,17 @@ const getLastValue = async (prop) => {
   const url = AppConfig.api.getCondition;
   const json = {
     username: _username,
-    startDate: '20220101',
+    startDate: '19000101',
     endDate: _currentFormatDate,
     orderBy: 'condition_date',
   };
   await util.getApiAsync(url, json).then((x) => (results = x.results));
 
-  console.log(results);
-
   let lastValue = 0;
-  results = results.reverse();
-  for (let i = 0; i < results.length; i++) {
-    const x = results[i];
+  const newResults = [...results].reverse();
+
+  for (let i = 0; i < newResults.length; i++) {
+    const x = newResults[i];
     if (x.condition_date != _currentFormatDate) {
       const v = JSON.parse(JSON.stringify(x))[prop];
       if (v) {

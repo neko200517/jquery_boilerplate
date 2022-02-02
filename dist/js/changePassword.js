@@ -167,11 +167,6 @@ var setConfirm = /*#__PURE__*/function () {
 /******/ 	__webpack_require__.m = __webpack_modules__;
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/amd options */
-/******/ 	!function() {
-/******/ 		__webpack_require__.amdO = {};
-/******/ 	}();
-/******/ 	
 /******/ 	/* webpack/runtime/chunk loaded */
 /******/ 	!function() {
 /******/ 		var deferred = [];
