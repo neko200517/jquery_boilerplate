@@ -119,10 +119,10 @@ module.exports = (params) => ({
     }),
 
     // assets
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src', 'assets', '_terms.html'),
-      filename: 'assets/_terms.html',
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: path.resolve(__dirname, 'src', 'assets', '_terms.html'),
+    //   filename: 'assets/_terms.html',
+    // }),
   ],
 
   devServer: {
