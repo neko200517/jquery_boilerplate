@@ -1,10 +1,8 @@
 const path = require('path');
+const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackWatchedGlobEntries = require('webpack-watched-glob-entries-plugin');
-const webpack = require('webpack');
-const { resolve } = require('path');
-const src = resolve(`${__dirname}/src`);
 
 const entries = WebpackWatchedGlobEntries.getEntries(
   [path.resolve(__dirname, './src/js/**/*.js')],
@@ -51,13 +49,6 @@ module.exports = (params) => ({
           {
             // Babel を利用する
             loader: 'babel-loader',
-            // Babel のオプションを指定する
-            options: {
-              presets: [
-                // プリセットを指定することで、ES2021 を ES5 に変換
-                '@babel/preset-env',
-              ],
-            },
           },
         ],
       },
