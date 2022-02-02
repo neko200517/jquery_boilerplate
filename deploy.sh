@@ -1,2 +1,1 @@
-#git subtree push --prefix dist/ origin HEAD
-echo "hoge"
+git subtree push --prefix dist/ origin dev-deploy-test-webpack
