@@ -23,7 +23,7 @@ const _controls = {
 };
 
 // 変数_宣言
-const _username = getCurrentUser().username;
+let _username;
 let _currentFormatDate;
 let _inputed = false; // 初回入力フラグ
 let _isDialogShowed = false; // ダイアログ表示フラグ
@@ -42,7 +42,10 @@ const MAX_INPUTABLE = 5;
 
 //------------------------------------------------------------------//
 
-startup();
+$(() => {
+  startup();
+  _username = getCurrentUser().username;
+});
 
 $(window).on('_ready', () => {
   // 日付(YYYYMMDD)の読み込み

@@ -22,7 +22,6 @@ const _controls = {
 
 // 宣言
 let _currentDate;
-const _username = getCurrentUser().username;
 
 //------------------------------------------------------------------//
 
@@ -85,7 +84,8 @@ const refresh = (value) => {
   }
 
   // カードの更新
-  refreshCard(_username, fdate);
+  const username = getCurrentUser().username;
+  refreshCard(username, fdate);
 };
 
 // カードを更新

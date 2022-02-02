@@ -10,7 +10,7 @@ export default {
     baseUrl: 'https://z9x2pa7n48.execute-api.ap-northeast-1.amazonaws.com/dev',
   },
   assets: {
-    terms: '../assets/terms.html',
+    terms: '../assets/_terms.html',
   },
   api: {
     getCondition: '/condition',

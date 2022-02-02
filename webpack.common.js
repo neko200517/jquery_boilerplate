@@ -120,8 +120,8 @@ module.exports = (params) => ({
 
     // assets
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src', 'assets', 'terms.html'),
-      filename: 'assets/terms.html',
+      template: path.resolve(__dirname, 'src', 'assets', '_terms.html'),
+      filename: 'assets/_terms.html',
     }),
   ],
 
