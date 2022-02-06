@@ -1,5 +1,4 @@
 import $ from './lib/_jquery-with-plugins';
-import 'babel-polyfill';
 import 'bootstrap';
 import '../css/style.scss';
 import startup from './lib/_startup';
@@ -53,7 +52,7 @@ const onSignIn = async () => {
 
 // Usersテーブルに存在しない場合はUserを自動作成
 const notExistedUserRegist = async (username) => {
-  const url = AppConfig.api.newUser;
+  const url = AppConfig.api.newStaff;
   const json = {
     username: username,
   };
@@ -66,7 +65,7 @@ const notExistedUserRegist = async (username) => {
 
 // 初回登録済みで遷移先を決定する
 const confirmedUserGotoLocation = (username) => {
-  const url = AppConfig.api.getUser;
+  const url = AppConfig.api.getStaff;
   const json = {
     username: username,
   };

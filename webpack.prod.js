@@ -21,7 +21,11 @@ module.exports = merge(common(params), {
     new MiniCssExtractPlugin({
       filename: `css/${outputFile}.css`,
     }),
+
+    // 暗号化
     // new Obfuscator({ rotateUnicodeArray: true }, []),
+
+    // 分析
     // new BundleAnalyzerPlugin(),
   ],
 });

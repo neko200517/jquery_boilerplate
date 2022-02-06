@@ -109,7 +109,11 @@ module.exports = (params) => ({
   },
 
   plugins: [
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      // 除外するファイルやディレクトリを指定
+      // verbose: true,
+      cleanOnceBeforeBuildPatterns: ['**/*', '!assets/**', '!.git/**'],
+    }),
 
     ...htmlGlobPlugins(entries, './src'), //  追加
 
@@ -117,12 +121,6 @@ module.exports = (params) => ({
       jQuery: 'jquery',
       $: 'jquery-confirm/dist/jquery-confirm.min.js',
     }),
-
-    // assets
-    // new HtmlWebpackPlugin({
-    //   template: path.resolve(__dirname, 'src', 'assets', '_terms.html'),
-    //   filename: 'assets/_terms.html',
-    // }),
   ],
 
   devServer: {

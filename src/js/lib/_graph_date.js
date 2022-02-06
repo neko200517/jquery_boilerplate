@@ -12,8 +12,8 @@ export default class ChartDate extends ChartBase {
   currentDate;
 
   // コンストラクタ
-  constructor() {
-    super();
+  constructor(username) {
+    super(username);
 
     $('.date-wrapper').show();
 

@@ -2,7 +2,6 @@ import $ from './_jquery-with-plugins';
 import * as util from './_utiltity';
 import AppConfig from './_config';
 import { Chart, registerables } from 'chart.js';
-import { getCurrentUser } from './_cognito';
 
 //------------------------------------------------------------------//
 
@@ -15,7 +14,7 @@ export default class ChartBase {
   // デフォルト値
   addDate = -14;
   chartMaxValue = 30;
-  username = getCurrentUser().username;
+  username;
 
   // チャートの設定
   chart = {
@@ -67,7 +66,8 @@ export default class ChartBase {
   ];
 
   // 初期化
-  constructor() {
+  constructor(username) {
+    this.username = username;
     Chart.register(...registerables);
     Chart.defaults.font.size = 13;
     Chart.defaults.font.weight = 600;

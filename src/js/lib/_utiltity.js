@@ -2,6 +2,7 @@ import $ from './_jquery-with-plugins';
 import AppLocalStorage from './_localStorage';
 import AppConfig from './_config';
 import { getCurrentSession } from './_cognito';
+import 'jquery-confirm/css/jquery-confirm.css';
 
 /**
  * HTMLページの埋め込み
@@ -19,15 +20,12 @@ export const includeHTML = (selector, filepath) => {
 export const loading = {
   toggle: () => {
     window._modal.toggle();
-    // $('#modalLoading').modal('toggle');
   },
   show: () => {
     window._modal.show();
-    // $('#modalLoading').modal('show');
   },
   hide: () => {
     window._modal.hide();
-    // $('#modalLoading').modal('hide');
   },
 };
 
@@ -152,6 +150,8 @@ export const postApiAsync = async (url, json) => {
     gotoLoginPage();
     return;
   }
+  json['created_at'] = new Date();
+  json['updated_at'] = new Date();
   json = JSON.parse(JSON.stringify(json));
   url = AppConfig.env.baseUrl + url;
   const deffer = new $.Deferred();

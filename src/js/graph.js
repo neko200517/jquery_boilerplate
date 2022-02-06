@@ -1,11 +1,10 @@
 import $ from './lib/_jquery-with-plugins';
-import 'babel-polyfill';
 import 'bootstrap';
 import '../css/style.scss';
+import '../css/_style-staff.scss';
 import startup from './lib/_startup';
 import * as util from './lib/_utiltity';
 import AppConfig from './lib/_config';
-import { getCurrentUser } from './lib/_cognito';
 import ChartDate from './lib/_graph_date';
 import ChartMonth from './lib/_graph_month';
 
@@ -16,13 +15,13 @@ $(() => {
 });
 
 $(window).on('_ready', () => {
-  const username = getCurrentUser().username;
+  const username = getUserName();
   isExistInterviewStartedAt(username);
 
   const btnChartDate = $('#btnChartDate');
   const btnChartMonth = $('#btnChartMonth');
 
-  let chart = new ChartDate();
+  let chart = new ChartDate(username);
   chart.setPaginationEnable(false);
   chart.createCardComponent();
 
@@ -38,16 +37,23 @@ $(window).on('_ready', () => {
   });
 });
 
+// ユーザー名の取得
+const getUserName = () => {
+  return util.getParam('username');
+};
+
 // 日グラフボタン
 const onBtnChartDate = () => {
-  let chart = new ChartDate();
+  const username = getUserName();
+  let chart = new ChartDate(username);
   chart.setPaginationEnable(false);
   chart.createCardComponent();
 };
 
 // 月グラフボタン
 const onBtnChartMonth = () => {
-  let chart = new ChartMonth();
+  const username = getUserName();
+  let chart = new ChartMonth(username);
   chart.createCardComponent();
 };
 

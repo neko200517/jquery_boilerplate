@@ -1,3 +1,5 @@
+import 'core-js';
+import 'regenerator-runtime';
 import AWS from 'aws-sdk/global';
 import * as AmazonCognitoIdentity from 'amazon-cognito-identity-js';
 import AppConfig from './_config';

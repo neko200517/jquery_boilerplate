@@ -1,5 +1,4 @@
 import $ from './lib/_jquery-with-plugins';
-import 'babel-polyfill';
 import 'bootstrap';
 import '../css/style.scss';
 import startup from './lib/_startup';
@@ -88,10 +87,16 @@ const setConfirm = async () => {
   await util
     .postApiAsync(url, json)
     .then(() => {
-      AppLocalStorage.setConfirmState(true);
-      location.href = 'home.html';
+      $('#btnOk').prop('disabled', true);
+      util.flash('登録に成功しました。', util.flash_type.success);
+      $(window)
+        .delay(3000)
+        .queue(() => {
+          AppLocalStorage.setConfirmState(true);
+          location.href = 'home.html';
+        });
     })
     .catch(() => {
-      gotoErrorPage();
+      util.flash('登録に失敗しました。');
     });
 };

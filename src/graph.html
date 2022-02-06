@@ -4,17 +4,21 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <noscript
+      ><meta http-equiv="refresh" content="0;URL=error.html"
+    /></noscript>
     <title>グラフ</title>
   </head>
+
   <body style="display: none">
     <div class="_navbar"></div>
     <div class="container">
       <h1 class="display-1">グラフ</h1>
       <hr />
 
-      <p class="text-danger" id="lblWarning" style="display: none">
-        ※面談開始日が登録されていないので週グラフは表示されません。
+      <p id="lblWarning" class="alert alert-danger" style="display: none">
+        <i class="fas fa-exclamation-triangle"></i>
+        面談開始日が登録されていないので週グラフは表示されません。
       </p>
 
       <ul class="nav nav-pills nav-fill mb-3">
@@ -27,13 +31,7 @@
       </ul>
 
       <div
-        class="
-          d-flex
-          justify-content-between
-          align-items-center
-          mb-3
-          date-wrapper
-        "
+        class="d-flex justify-content-between align-items-center mb-3 date-wrapper"
       >
         <button class="btn btn-primary date-wrapper" id="btnPrev">◀</button>
         <h2 class="text-center date-wrapper" id="lblDateTime"></h2>

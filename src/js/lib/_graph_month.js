@@ -8,8 +8,8 @@ import ChartBase from './_graph_base';
 // 月グラフ
 export default class ChartMonth extends ChartBase {
   // コンストラクタ
-  constructor() {
-    super();
+  constructor(username) {
+    super(username);
     $('.date-wrapper').hide();
   }
 

@@ -1,1 +1,1 @@
-cp -r src/assets/ dist/assets/
+cp -r src/assets/ dist/
