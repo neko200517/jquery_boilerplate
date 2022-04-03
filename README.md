@@ -1,15 +1,10 @@
 # ボイラープレート
 
-以下のことが実現できる
+自分用
+※src 配下の js ファイルの名前に基づく html を自動生成
 
 - マルチページ
 - JQuery
 - Bootstrap
 - aws-sdk
 - webpack
-
-# 使い方
-
-```
-npm i
-```
