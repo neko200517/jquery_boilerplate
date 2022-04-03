@@ -6,9 +6,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const params = {
   outputFile: outputFile,
   enabledSourceMap: true,
-  // styleLoader: {
-  //   loader: 'style-loader',
-  // },
   styleLoader: {
     loader: MiniCssExtractPlugin.loader,
   },

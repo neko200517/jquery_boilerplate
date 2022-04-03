@@ -5,13 +5,6 @@
   */
 
 /*!
- * Chart.js v3.7.0
- * https://www.chartjs.org
- * (c) 2021 Chart.js Contributors
- * Released under the MIT License
- */
-
-/*!
  * Copyright 2016 Amazon.com,
  * Inc. or its affiliates. All Rights Reserved.
  *
@@ -26,12 +19,6 @@
  * CONDITIONS OF ANY KIND, express or implied. See the License
  * for the specific language governing permissions and
  * limitations under the License.
- */
-
-/*!
- * Datepicker for Bootstrap v1.9.0 (https://github.com/uxsolutions/bootstrap-datepicker)
- *
- * Licensed under the Apache License v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
  */
 
 /*!
@@ -85,12 +72,3 @@
  */
 
 /*! https://mths.be/punycode v1.3.2 by @mathias */
-
-/**
-  * bootstrap-table - An extended table to integration with some of the most widely used CSS frameworks. (Supports Bootstrap, Semantic UI, Bulma, Material Design, Foundation)
-  *
-  * @version v1.19.1
-  * @homepage https://bootstrap-table.com
-  * @author wenzhixin <wenzhixin2010@gmail.com> (http://wenzhixin.net.cn/)
-  * @license MIT
-  */

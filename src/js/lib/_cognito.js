@@ -19,16 +19,17 @@ export const initCognitoProvider = () => {
  * @returns
  */
 export const isSignIn = () => {
-  const cognitoUser = getCurrentUser();
-  if (cognitoUser == null) {
-    return false;
-  }
-  cognitoUser.getSession((err, session) => {
-    if (err) {
-      return false;
-    }
-  });
-  return true;
+  // const cognitoUser = getCurrentUser();
+  // if (cognitoUser == null) {
+  //   return false;
+  // }
+  // cognitoUser.getSession((err, session) => {
+  //   if (err) {
+  //     return false;
+  //   }
+  // });
+  // return true;
+  return false;
 };
 
 /**

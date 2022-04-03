@@ -6,7 +6,7 @@ import AppConfig from './_config';
 
 export default (isHidden = true) => {
   // httpsにリダイレクト
-  if (AppConfig.app.version == 'release') {
+  if (AppConfig.app.environment == 'production') {
     util.redirectToHttps();
   }
 
@@ -16,27 +16,27 @@ export default (isHidden = true) => {
   }
 
   // 認証プロバイダの初期化
-  initCognitoProvider();
+  // initCognitoProvider();
 
-  // 直URLを踏んだときの対策
-  if (isSignIn()) {
-    if (util.isConfirm()) {
-      if (util.isLoginPage()) {
-        location.href = 'home.html';
-      }
-    } else {
-      if (
-        !location.pathname.match(/terms/) &&
-        !location.pathname.match(/changePassword/)
-      ) {
-        // location.href = 'terms.html';
-      }
-    }
-  } else {
-    if (!util.isLoginPage()) {
-      util.gotoLoginPage();
-    }
-  }
+  // // 直URLを踏んだときの対策
+  // if (isSignIn()) {
+  //   if (util.isConfirm()) {
+  //     if (util.isLoginPage()) {
+  //       location.href = 'home.html';
+  //     }
+  //   } else {
+  //     if (
+  //       !location.pathname.match(/terms/) &&
+  //       !location.pathname.match(/changePassword/)
+  //     ) {
+  //       // location.href = 'terms.html';
+  //     }
+  //   }
+  // } else {
+  //   if (!util.isLoginPage()) {
+  //     util.gotoLoginPage();
+  //   }
+  // }
 
   $(() => {
     addHtmlParts();
@@ -60,7 +60,7 @@ const addHtmlParts = () => {
   navbar.innerHTML = `
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="home.html"></a>
+        <a class="navbar-brand" href="login.html"></a>
         <button
           class="navbar-toggler"
           type="button"

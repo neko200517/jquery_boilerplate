@@ -25,7 +25,7 @@ module.exports = merge(common(params), {
     // 暗号化
     // new Obfuscator({ rotateUnicodeArray: true }, []),
 
-    // 分析
+    // ライブラリのサイズを分析
     // new BundleAnalyzerPlugin(),
   ],
 });
